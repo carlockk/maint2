@@ -1,0 +1,496 @@
+/* === CONFIGURACIÓN GENERAL === */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+body {
+    background: #ffffff;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+/* === CONTENEDORES === */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 20px 10px;
+    padding: 15px;
+  }
+}
+
+/* === TÍTULOS === */
+h2, h3 {
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+/* === FORMULARIOS === */
+form {
+    background: #ecf0f1;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+form input, form select, form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* === BOTONES UNIFORMES === */
+button, .btn, form button {
+    background: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover, .btn:hover, form button:hover {
+    background: #2980b9;
+}
+
+/* Botón secundario (celeste pastel) */
+.button-secondary {
+    background: #bde0fe;
+    color: #1d3557;
+}
+.button-secondary:hover {
+    background: #8ecae6;
+}
+
+/* Botón secundario2 (celeste pastel) */
+.button-secondary2 {
+    background: #5c8fbb;
+    color: #fff;
+}
+.button-secondary2:hover {
+    background: #466d8e;
+}
+
+/* Botón de peligro (rojo pastel) */
+.button-danger, .btn-delete {
+    background: #ffadad;
+    color: white;
+}
+.button-danger:hover, .btn-delete:hover {
+    background: #ff6b6b;
+}
+
+/* Botón de crear (verde pastel) */
+.btn-create {
+    background: #2ecc71;
+    color: white;
+}
+.btn-create:hover {
+    background: #27ae60;
+}
+
+/* === TABLAS === */
+table, .styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #3498db;
+    color: white;
+}
+
+/* === RESPONSIVE TABLE === */
+@media screen and (max-width: 768px) {
+    .styled-table, table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px 8px;
+    }
+
+    form input, form select, form button {
+        font-size: 14px;
+    }
+
+    button, .btn {
+        font-size: 14px;
+    }
+}
+
+/* Solo visible en móviles */
+.top-bar-mobile {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .top-bar-mobile {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background-color: #AEC6CF;
+        z-index: 0; /* Por detrás del contenido */
+    }
+
+    /* Si tienes menú u otro contenido, asegúrate de que esté por encima */
+    .sidebar,
+    .main-content {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+
+/* === PAGINACIÓN === */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+.pagination a {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 2px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.pagination a.active {
+    background: #2980b9;
+    font-weight: bold;
+}
+.pagination a:hover {
+    background: #1f618d;
+}
+
+/* === INPUT DE CALENDARIO === */
+.flatpickr-input {
+    background: #fef9c3;
+    border: 1px solid #f4a261;
+    color: #1d3557;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 250px;
+    cursor: pointer;
+}
+
+.flatpickr-calendar {
+    background: #fffcf2;
+    border: 1px solid #ff9f1c;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+    background: #f4a261 !important;
+    color: white !important;
+    border-radius: 4px;
+}
+
+
+
+
+/* GESTIONAR OPCIONES ASIGNADAS */
+
+/* Estilo base para tabla */
+.opciones-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.opciones-table th,
+.opciones-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.opciones-table thead {
+  background-color: #f2f2f2;
+}
+
+/* Responsive para móviles */
+@media screen and (max-width: 600px) {
+  .opciones-table {
+    font-size: 14px;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: calc(100% - 10px);
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .opciones-table th,
+  .opciones-table td {
+    padding: 6px;
+  }
+}
+/* FIN GESTIONAR OPCIONES ASIGNADAS */
+
+
+/* GESTIONAR ITEMS DEL CHECKLIST */
+
+/* Estilo base para Ítems del Checklist */
+.checklist-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.checklist-table th,
+.checklist-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.check-main {
+  font-weight: bold;
+}
+.check-sub {
+  color: #000;
+}
+.check-subsub {
+  color: #777;
+}
+
+.checklist-table thead {
+  background-color: #f2f2f2;
+}
+
+/* Responsive para móviles */
+@media screen and (max-width: 600px) {
+  .checklist-table {
+    font-size: 14px;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: calc(100% - 10px);
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .checklist-table th,
+  .checklist-table td {
+    padding: 6px;
+  }
+}
+/* FIN GESTIONAR ITEMS DEL CHECKLIST */
+
+
+
+.botones-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.botones-acciones button,
+.botones-acciones a {
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  white-space: nowrap;
+  flex: 1 1 auto;
+}
+
+/* Botón descarga PDF */
+.btn-download {
+  background: #6c5ce7;
+}
+.btn-download:hover {
+  background: #4e41b3;
+}
+
+/* === MODALES === */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#finalizarBtn { background: #3498db; }
+#cancelarBtn { background: #e74c3c; }
+.iniciar-reparacion { background: #f39c12; }
+.iniciar-emergencia { background: #c0392b; }
+
+@media (max-width: 600px) {
+  .botones-acciones {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* === LOGIN === */
+.login-page {
+  background: url('https://static.vecteezy.com/system/resources/previews/027/742/571/non_2x/gears-3d-modern-illustration-on-dark-blue-background-vector.jpg')
+    center/cover no-repeat fixed;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.login-form {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-form .error {
+  color: #e74c3c;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: #e74c3c;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* === MODO OSCURO === */
+body.dark-mode {
+  background: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.dark-mode .container,
+.dark-mode table,
+.dark-mode .styled-table {
+  background: #2b2b2b;
+  color: #e0e0e0;
+}
+
+.dark-mode th {
+  background: #444;
+  color: #fff;
+}
+
+.dark-mode .sidebar {
+  background: #333;
+  color: #f0f0f0;
+}
+
+.dark-mode .sidebar a.active {
+  background: #555;
+}
+
+.dark-mode .modal-content {
+  background: #333;
+  color: #fff;
+}
+
+.dark-mode .login-form {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+.dark-mode .check-subsub {
+  color: #aaa;
+}
+
+/* Botón de tema */
+#themeToggle {
+  background: transparent;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.dark-mode #themeToggle {
+  color: #fff;
+}
+
+/* Botón para escanear QR */
+.btn-qr {
+  background: #8e44ad;
+  color: #fff;
+  font-size: 18px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  display: inline-block;
+  text-decoration: none;
+}
+.btn-qr:hover {
+  background: #732d91;
+}
