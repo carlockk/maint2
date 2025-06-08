@@ -1,17 +1,32 @@
-const CACHE_NAME='maintcheck-cache-v1';
-const ASSETS=[
+const CACHE_NAME = 'maintcheck-cache-v1';
+const ASSETS = [
   '/',
   '/maintcheck/index.php',
   '/maintcheck/style.css',
   '/maintcheck/offline.js'
 ];
-self.addEventListener('install',e=>{
-  e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(ASSETS)));
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+  );
+  self.skipWaiting();
 });
-self.addEventListener('fetch',e=>{
-  if(e.request.method==='GET'){
-    e.respondWith(
-      caches.match(e.request).then(r=>r||fetch(e.request))
+
+self.addEventListener('activate', event => {
+  event.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('fetch', event => {
+  if (event.request.method === 'GET') {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+          return response;
+        })
+        .catch(() => caches.match(event.request))
     );
   }
 });
