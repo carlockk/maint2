@@ -40,7 +40,7 @@ if (
         }
     }
 
-    echo "<!DOCTYPE html><html lang='es'><head><meta charset='UTF-8'>";
+    echo "<!DOCTYPE html><html lang='es'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
     echo "<style>.msg{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%);background:#2ecc71;color:#fff;padding:20px;border-radius:8px;font-size:18px;}</style>";
     echo "<script>setTimeout(function(){window.location.href='mantencion.php?equipo_id=$equipo_id';},1500);</script>";
     echo "</head><body><div class='msg'>✅ Checklist guardado correctamente.</div></body></html>";
