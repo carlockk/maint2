@@ -194,3 +194,9 @@
 
 
 </style>
+<script src="offline.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/maintcheck/service-worker.js');
+  }
+</script>

@@ -179,6 +179,5 @@ while ($row = $items_result->fetch_assoc()) {
 
 </div>
 
-<script src="offline.js"></script>
 </body>
 </html>

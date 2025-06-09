@@ -3,7 +3,8 @@ const ASSETS = [
   '/',
   '/maintcheck/index.php',
   '/maintcheck/style.css',
-  '/maintcheck/offline.js'
+  '/maintcheck/offline.js',
+  '/maintcheck/offline.html'
 ];
 
 self.addEventListener('install', event => {
@@ -26,7 +27,7 @@ self.addEventListener('fetch', event => {
           caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
           return response;
         })
-        .catch(() => caches.match(event.request))
+        .catch(() => caches.match(event.request).then(r => r || caches.match('/maintcheck/offline.html')))
     );
   }
 });

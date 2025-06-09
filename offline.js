@@ -11,7 +11,15 @@ function flushQueue(){
   const next=q[0];
   fetch(next.url,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:next.body})
     .then(r=>r.ok?r.text():Promise.reject())
-    .then(()=>{q.shift();localStorage.setItem(KEY,JSON.stringify(q));flushQueue();})
+    .then(()=>{
+      q.shift();
+      localStorage.setItem(KEY,JSON.stringify(q));
+      if(q.length){
+        flushQueue();
+      }else{
+        location.reload();
+      }
+    })
     .catch(()=>{});
 }
 window.addEventListener('online',flushQueue);

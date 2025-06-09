@@ -446,7 +446,6 @@ function obtenerColor($estado)
             margin-left: 6px;
         }
 </style>
-<script src="offline.js"></script>
 </body>
 
 </html>

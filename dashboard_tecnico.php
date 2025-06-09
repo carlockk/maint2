@@ -135,5 +135,11 @@ function obtenerColorEstado($estado)
     <h3>Escanear Código QR</h3>
     <a href="escanear_qr.php" class="btn-qr">📷 Escanear QR</a>
 </div>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/maintcheck/service-worker.js')
+      .catch(err => console.error('SW reg failed', err));
+  }
+</script>
 </body>
 </html>
