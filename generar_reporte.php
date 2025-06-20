@@ -1,6 +1,6 @@
 <?php
-require 'db.php';
-require 'fpdf.php';
+require_once __DIR__.'/db.php';
+require_once __DIR__.'/fpdf.php';
 
 // Limpiar cualquier salida previa para evitar errores al enviar el PDF
 if (ob_get_length()) {
@@ -23,7 +23,7 @@ if (!$data) {
     die('Datos no encontrados');
 }
 
-header('Content-Type: application/pdf');
+// FPDF envía sus propias cabeceras para el PDF
 
 $pdf = new FPDF();
 $pdf->AddPage();

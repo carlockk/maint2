@@ -1,7 +1,8 @@
 <?php
 session_start();
-header('Cache-Control: no-store, no-cache, must-revalidate');
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 header('Pragma: no-cache');
+header('Expires: 0');
 include 'db.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'tecnico') {
@@ -179,6 +180,7 @@ if (!$mantencion_id && !$iniciar) {
     let timerInterval;
 
     function startTimer() {
+        if (timerInterval) clearInterval(timerInterval);
         timerInterval = setInterval(() => {
             let elapsed = Math.floor((Date.now() - startTime) / 1000);
             let h = Math.floor(elapsed / 3600).toString().padStart(2, '0');
@@ -281,11 +283,8 @@ if (!$mantencion_id && !$iniciar) {
         });
     }
 
-    window.onload = startTimer;
-    window.addEventListener('pageshow', function(e) {
-        if (e.persisted) {
-            window.location.reload();
-        }
+    document.addEventListener('DOMContentLoaded', startTimer);
+    window.addEventListener('pageshow', startTimer);
 </script>
 <script src="offline.js"></script>
 </body>
