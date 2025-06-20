@@ -286,6 +286,7 @@ if (!$mantencion_id && !$iniciar) {
         if (e.persisted) {
             window.location.reload();
         }
+    });
 </script>
 <script src="offline.js"></script>
 </body>
