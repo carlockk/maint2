@@ -282,10 +282,10 @@ if (!$mantencion_id && !$iniciar) {
         });
     }
 
-    window.onload = startTimer;
+    document.addEventListener('DOMContentLoaded', startTimer);
     window.addEventListener('pageshow', function(e) {
         if (e.persisted) {
-            window.location.reload();
+            startTimer();
         }
     });
 </script>
