@@ -180,6 +180,7 @@ if (!$mantencion_id && !$iniciar) {
     let timerInterval;
 
     function startTimer() {
+        if (timerInterval) clearInterval(timerInterval);
         timerInterval = setInterval(() => {
             let elapsed = Math.floor((Date.now() - startTime) / 1000);
             let h = Math.floor(elapsed / 3600).toString().padStart(2, '0');
@@ -283,11 +284,7 @@ if (!$mantencion_id && !$iniciar) {
     }
 
     document.addEventListener('DOMContentLoaded', startTimer);
-    window.addEventListener('pageshow', function(e) {
-        if (e.persisted) {
-            startTimer();
-        }
-    });
+    window.addEventListener('pageshow', startTimer);
 </script>
 <script src="offline.js"></script>
 </body>
