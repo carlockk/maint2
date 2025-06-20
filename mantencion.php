@@ -1,7 +1,8 @@
 <?php
 session_start();
-header('Cache-Control: no-store, no-cache, must-revalidate');
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 header('Pragma: no-cache');
+header('Expires: 0');
 include 'db.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'tecnico') {
@@ -286,6 +287,7 @@ if (!$mantencion_id && !$iniciar) {
         if (e.persisted) {
             window.location.reload();
         }
+    });
 </script>
 <script src="offline.js"></script>
 </body>
