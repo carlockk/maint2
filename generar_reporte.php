@@ -23,26 +23,54 @@ if (!$data) {
     die('Datos no encontrados');
 }
 
-header('Content-Type: application/pdf');
+$format = isset($_GET['format']) ? strtolower($_GET['format']) : 'pdf';
 
-$pdf = new FPDF();
-$pdf->AddPage();
-$pdf->SetFont('Arial', 'B', 16);
-$pdf->Cell(0, 10, utf8_decode('Reporte de Mantención'), 0, 1, 'C');
-$pdf->Ln(10);
+if ($format !== 'pdf') {
+    header('Content-Type: text/html; charset=UTF-8');
+    echo '<h1>Reporte de Mantención</h1>';
+    echo '<table border="1" cellpadding="5">';
+    echo '<tr><th>Técnico</th><td>'.htmlspecialchars($data['tecnico']).'</td></tr>';
+    echo '<tr><th>Equipo</th><td>'.htmlspecialchars($data['equipo'].' - '.$data['modelo']).'</td></tr>';
+    echo '<tr><th>Edificio</th><td>'.htmlspecialchars($data['edificio'].' - '.$data['direccion']).'</td></tr>';
+    echo '<tr><th>Inicio</th><td>'.$data['hora_inicio'].'</td></tr>';
+    echo '<tr><th>Fin</th><td>'.$data['hora_fin'].'</td></tr>';
+    echo '</table>';
+    exit;
+}
 
-$pdf->SetFont('Arial', '', 12);
-$pdf->Cell(50, 8, utf8_decode('Técnico:'));
-$pdf->Cell(0, 8, utf8_decode($data['tecnico']), 0, 1);
-$pdf->Cell(50, 8, 'Equipo:');
-$pdf->Cell(0, 8, utf8_decode($data['equipo'] . ' - ' . $data['modelo']), 0, 1);
-$pdf->Cell(50, 8, 'Edificio:');
-$pdf->Cell(0, 8, utf8_decode($data['edificio'] . ' - ' . $data['direccion']), 0, 1);
-$pdf->Cell(50, 8, 'Inicio:');
-$pdf->Cell(0, 8, $data['hora_inicio'], 0, 1);
-$pdf->Cell(50, 8, 'Fin:');
-$pdf->Cell(0, 8, $data['hora_fin'], 0, 1);
+try {
+    header('Content-Type: application/pdf');
 
-$pdf->Output('D', 'mantencion_'.$id.'.pdf');
+    $pdf = new FPDF();
+    $pdf->AddPage();
+    $pdf->SetFont('Arial', 'B', 16);
+    $pdf->Cell(0, 10, utf8_decode('Reporte de Mantención'), 0, 1, 'C');
+    $pdf->Ln(10);
+
+    $pdf->SetFont('Arial', '', 12);
+    $pdf->Cell(50, 8, utf8_decode('Técnico:'));
+    $pdf->Cell(0, 8, utf8_decode($data['tecnico']), 0, 1);
+    $pdf->Cell(50, 8, 'Equipo:');
+    $pdf->Cell(0, 8, utf8_decode($data['equipo'] . ' - ' . $data['modelo']), 0, 1);
+    $pdf->Cell(50, 8, 'Edificio:');
+    $pdf->Cell(0, 8, utf8_decode($data['edificio'] . ' - ' . $data['direccion']), 0, 1);
+    $pdf->Cell(50, 8, 'Inicio:');
+    $pdf->Cell(0, 8, $data['hora_inicio'], 0, 1);
+    $pdf->Cell(50, 8, 'Fin:');
+    $pdf->Cell(0, 8, $data['hora_fin'], 0, 1);
+
+    $pdf->Output('D', 'mantencion_'.$id.'.pdf');
+} catch (Exception $e) {
+    header('Content-Type: text/html; charset=UTF-8');
+    echo '<h1>Reporte de Mantención</h1>';
+    echo '<p>No se pudo generar el PDF. A continuación se muestra el informe:</p>';
+    echo '<table border="1" cellpadding="5">';
+    echo '<tr><th>Técnico</th><td>'.htmlspecialchars($data['tecnico']).'</td></tr>';
+    echo '<tr><th>Equipo</th><td>'.htmlspecialchars($data['equipo'].' - '.$data['modelo']).'</td></tr>';
+    echo '<tr><th>Edificio</th><td>'.htmlspecialchars($data['edificio'].' - '.$data['direccion']).'</td></tr>';
+    echo '<tr><th>Inicio</th><td>'.$data['hora_inicio'].'</td></tr>';
+    echo '<tr><th>Fin</th><td>'.$data['hora_fin'].'</td></tr>';
+    echo '</table>';
+}
 exit;
 ?>
